@@ -13,19 +13,16 @@ A parody site about the pain of using Kubernetes. Hosted on Cloudflare Pages (no
 
 1. Go to **Cloudflare Dashboard → Workers & Pages → Pages**
 2. Click **"Upload assets"**
-3. Upload the `index.html` and `style.css` files
+3. Upload `index.html` and `style.css`
 4. Click **"Deploy"**
 
 ### Deploy (Git — Recommended)
 
-1. Push this repo to GitHub/GitLab
+1. Push this repo to GitHub
 2. In Cloudflare Pages, click **"Connect to Git"**
 3. Select the repo
-4. **Build settings:** Framework = "None", Build output = `/`
-5. **Environment variables (Advanced):**
-   - `STRIPE_SECRET_KEY` = `sk_live_...` (your Stripe secret key)
-   - `SITE_URL` = `https://ih8k8.com`
-6. Click **"Deploy"**
+4. **Build settings:** Framework preset = "None", Build output directory = `/`
+5. Click **"Save and Deploy"**
 
 ### Custom Domain
 
@@ -33,24 +30,20 @@ A parody site about the pain of using Kubernetes. Hosted on Cloudflare Pages (no
 2. Add `ih8k8.com`
 3. Point your domain's nameservers to Cloudflare
 
-## Setting Up Donations
+## Setting Up Donations ($5)
 
-The donation button calls a Cloudflare Function that creates a Stripe Checkout Session for $5.
+The donate button links directly to a Stripe Payment Link — no serverless functions needed.
 
 1. Create a [Stripe account](https://dashboard.stripe.com)
-2. Get your **Secret Key** (`sk_live_...`) from the Stripe Dashboard
-3. Add it as an environment variable `STRIPE_SECRET_KEY` in Cloudflare Pages
-4. Donations flow directly to your Stripe account (minus Stripe's ~2.9% + $0.30 fee)
-
-No Kubernetes was involved in the making of this donation system.
+2. Go to **Stripe Dashboard → Payment Links** → **"Create a Payment Link"**
+3. Set price to **$5** (one-time)
+4. Publish and copy the link (looks like `https://buy.stripe.com/...`)
+5. Open `index.html` and replace `YOUR_PAYMENT_LINK_HERE` with your link
+6. Commit and push — Cloudflare redeploys automatically
 
 ## Development
 
 ```bash
-# Serve locally with wrangler (includes Cloudflare Functions)
-npx wrangler pages dev .
-
-# Or just open the static HTML
 open index.html
 ```
 

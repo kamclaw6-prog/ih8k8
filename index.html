@@ -89,13 +89,12 @@
       <p class="donate-limit">Donations up to $5 — because even my donation form hates overhead.</p>
 
       <div class="donation-options">
-        <a href="#" class="btn stripe-btn" id="stripeBtn">Donate via Stripe</a>
-        <a href="#" class="btn crypto-btn" id="cryptoBtn">
-          &#8383; 1CryptoDonation...
+        <a href="https://buy.stripe.com/YOUR_PAYMENT_LINK_HERE" class="btn stripe-btn" target="_blank" rel="noopener">
+          Donate $5 via Stripe
         </a>
       </div>
       <p class="fine-print">
-        Powered by serverless functions. Zero orchestrators were harmed in the making of this payment form.
+        Powered by a Stripe Payment Link. Zero serverless functions, zero orchestrators.
       </p>
     </section>
   </main>
@@ -105,22 +104,5 @@
     <p class="footer-ps">If you find this funny, deploy a pod to tell me. Oh wait, it'll crash. Never mind.</p>
   </footer>
 
-  <script>
-    const stripeBtn = document.getElementById('stripeBtn');
-    stripeBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      stripeBtn.textContent = 'Opening checkout...';
-      stripeBtn.disabled = true;
-
-      try {
-        const res = await fetch('/api/create-checkout', { method: 'POST' });
-        const { url } = await res.json();
-        window.location.href = url;
-      } catch {
-        const { url } = await res.json();
-        window.location.href = url;
-      }
-    });
-  </script>
 </body>
 </html>
