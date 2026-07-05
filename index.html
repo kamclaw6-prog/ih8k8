@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ih8k8 — I Hate Kubernetes</title>
+  <meta name="description" content="A parody site dedicated to the pain of using Kubernetes." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="helm">&#9881;</span>
+      <h1>ih8k8</h1>
+      <span class="helm">&#9881;</span>
+    </div>
+    <p class="subtitle">I <span class="heart">&lt;3</span> hating Kubernetes</p>
+  </header>
+
+  <main>
+    <section class="jokes">
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>YAML Hell</h2>
+        <p>I spent 3 days debugging a typo in a YAML file. The error message? "Failed to apply." Thanks, Kubernetes. Real helpful.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>CrashLoopBackOff</h2>
+        <p>My pod is in <code>CrashLoopBackOff</code>. I've been too. We have that in common.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>ImagePullBackOff</h2>
+        <p>I asked my pod to pull an image. It said "back off" and hasn't spoken to me since. Fair.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>RBAC Roulette</h2>
+        <p>I gave my service account <code>cluster-admin</code> because I couldn't figure out RBAC. Kubernetes whispered: "another one bites the dust."</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>Helm Charts</h2>
+        <p>Helm charts are like a box of chocolates. You never know what version of <code>postgresql.enabled</code> you're gonna get.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>Ingress Controller War</h4>
+        <p>I have 4 ingress controllers and 3 CNI plugins installed. My cluster now identifies as "anxiety."</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>Cert-Manager Rizz</h2>
+        <p>cert-manager has been trying to issue an SSL certificate for 48 hours. I think it's just nervous. Me too, buddy. Me too.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>etcd Backup?</h2>
+        <p>You guys are backing up etcd? I just pray and reboot.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>Cloud Native Grief</h2>
+        <p>Kubernetes asked me to "embrace cloud native." I embraced it. Now I'm in debt and I can't <code>kubectl delete pod --grace-period=0</code> my problems.</p>
+      </div>
+
+      <div class="joke-card">
+        <span class="icon">&#9881;</span>
+        <h2>Node Drain</h2>
+        <p>I tried to drain a node. It drained my will to live instead.</p>
+      </div>
+    </section>
+
+    <section class="donate" id="donate">
+      <h2>Donate to This Site</h2>
+      <p class="donate-text">
+        This site is hosted on Cloudflare Pages. NOT on Kubernetes. Not a single <code>Pod</code>, no <code>Deployment</code>, no <code>StatefulSet</code>.
+        Just HTML and a prayer. Help me keep this site alive — and away from k8s.
+      </p>
+      <p class="donate-limit">Donations up to $5 — because even my donation form hates overhead.</p>
+
+      <div class="donation-options">
+        <a href="#" class="btn stripe-btn" id="stripeBtn">Donate via Stripe</a>
+        <a href="#" class="btn crypto-btn" id="cryptoBtn">
+          &#8383; 1CryptoDonation...
+        </a>
+      </div>
+      <p class="fine-print">
+        Powered by serverless functions. Zero orchestrators were harmed in the making of this payment form.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ih8k8.com — Made with hate and HTML.</p>
+    <p class="footer-ps">If you find this funny, deploy a pod to tell me. Oh wait, it'll crash. Never mind.</p>
+  </footer>
+
+  <script>
+    const stripeBtn = document.getElementById('stripeBtn');
+    stripeBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      stripeBtn.textContent = 'Opening checkout...';
+      stripeBtn.disabled = true;
+
+      try {
+        const res = await fetch('/api/create-checkout', { method: 'POST' });
+        const { url } = await res.json();
+        window.location.href = url;
+      } catch {
+        const { url } = await res.json();
+        window.location.href = url;
+      }
+    });
+  </script>
+</body>
+</html>
